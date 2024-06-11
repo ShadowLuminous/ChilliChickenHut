@@ -50,6 +50,7 @@
 
         .carousel-slide {
             display: flex;
+            justify-content: center;
             transition: transform 0.5s ease-in-out;
         }
 
@@ -415,74 +416,75 @@
 				</div>
 			</div>
 
-			<div class="carousel-container">
-				<div class="carousel-slide" id="carousel-slide">
-					<!-- Images will be dynamically generated here -->
-				</div>
-				<a class="carousel-button left" id="prev">&#10094;</a>
-				<a class="carousel-button right" id="next">&#10095;</a>
-			</div>
-		
-			<!-- Modal for full-size image view -->
-			<div id="imageModal">
-				<span id="closeModal">&times;</span>
-				<img id="fullImage">
-			</div>
-		
-			<script>
-				const totalImages = 81;
-				const slideContainer = document.getElementById('carousel-slide');
-		
-				for (let i = 1; i <= totalImages; i++) {
-					const img = document.createElement('img');
-					img.src = `assets/images/menu/2024-05-14 - Chilli Chicken Hut-${String(i).padStart(2, '0')}.jpg`;
-					img.alt = `Image ${i}`;
-					img.addEventListener('click', () => {
-						document.getElementById('fullImage').src = img.src;
-						document.getElementById('imageModal').style.display = 'flex';
-					});
-					slideContainer.appendChild(img);
-				}
-		
-				let currentIndex = 0;
-				let itemsToShow = window.innerWidth < 768 ? 1 : 4;
-		
-				function showSlide(index) {
-					const totalSlides = Math.ceil(totalImages / itemsToShow);
-					if (index >= totalSlides) {
-						currentIndex = 0;
-					} else if (index < 0) {
-						currentIndex = totalSlides - 1;
-					} else {
-						currentIndex = index;
-					}
-					slideContainer.style.transform = `translateX(${-currentIndex * 100 / itemsToShow}%)`;
-				}
-		
-				document.getElementById('prev').addEventListener('click', () => {
-					showSlide(currentIndex - 1);
-				});
-		
-				document.getElementById('next').addEventListener('click', () => {
-					showSlide(currentIndex + 1);
-				});
-		
-				window.addEventListener('resize', () => {
-					itemsToShow = window.innerWidth < 768 ? 1 : 4;
-					showSlide(currentIndex);
-				});
-		
-				document.getElementById('closeModal').addEventListener('click', () => {
-					document.getElementById('imageModal').style.display = 'none';
-				});
-		
-				// Optional: Automatic slideshow
-				setInterval(() => {
-					showSlide(currentIndex + 1);
-				}, 3000); // Change image every 3 seconds
-		
-				showSlide(0);
-			</script>
+    <div class="carousel-container">
+        <div class="carousel-slide" id="carousel-slide">
+            <!-- Images will be dynamically generated here -->
+        </div>
+        <a class="carousel-button left" id="prev">&#10094;</a>
+        <a class="carousel-button right" id="next">&#10095;</a>
+    </div>
+
+    <!-- Modal for full-size image view -->
+    <div id="imageModal">
+        <span id="closeModal">&times;</span>
+        <img id="fullImage">
+    </div>
+
+    <script>
+        const totalImages = 24;
+        const slideContainer = document.getElementById('carousel-slide');
+
+        for (let i = 1; i <= totalImages; i++) {
+            const img = document.createElement('img');
+            img.src = `assets/images/menu/2024-05-14 - Chilli Chicken Hut-${String(i).padStart(2, '0')}.jpg`;
+            img.alt = `Image ${i}`;
+            img.addEventListener('click', () => {
+                document.getElementById('fullImage').src = img.src;
+                document.getElementById('imageModal').style.display = 'flex';
+            });
+            slideContainer.appendChild(img);
+        }
+
+        let currentIndex = 0;
+        let itemsToShow = window.innerWidth < 768 ? 1 : 4;
+
+        function showSlide(index) {
+            const totalSlides = Math.ceil(totalImages / itemsToShow);
+            if (index >= totalSlides) {
+                currentIndex = 0;
+            } else if (index < 0) {
+                currentIndex = totalSlides - 1;
+            } else {
+                currentIndex = index;
+            }
+            slideContainer.style.transform = `translateX(${-currentIndex * 100 / itemsToShow}%)`;
+        }
+
+        document.getElementById('prev').addEventListener('click', () => {
+            showSlide(currentIndex - 1);
+        });
+
+        document.getElementById('next').addEventListener('click', () => {
+            showSlide(currentIndex + 1);
+        });
+
+        window.addEventListener('resize', () => {
+            itemsToShow = window.innerWidth < 768 ? 1 : 4;
+            showSlide(currentIndex);
+        });
+
+        document.getElementById('closeModal').addEventListener('click', () => {
+            document.getElementById('imageModal').style.display = 'none';
+        });
+
+        // Optional: Automatic slideshow
+        setInterval(() => {
+            showSlide(currentIndex + 1);
+        }, 3000); // Change image every 3 seconds
+
+        showSlide(0);
+    </script>
+
 			<img class="bg1 dz-move-down" src="assets/images/background/pic12.png" alt="/">
 			<img class="bg2 dz-move-down" src="assets/images/background/pic14.png" alt="/">
 		</section>

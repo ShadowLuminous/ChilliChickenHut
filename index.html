@@ -201,47 +201,8 @@
 		
 		<!--Timer--><br>
 		<div class="counter-container">
-			<div class="counter-title"><b>We're Launching On The 1st Of June</b></div>
-			<div class="countdown">
-				<div>
-					<span id="months"></span>
-					Months
-				</div>
-				<div>
-					<span id="days"></span>
-					Days
-				</div>
-				<div>
-					<span id="hours"></span>
-					Hours
-				</div>
-				<div>
-					<span id="minutes"></span>
-					Minutes
-				</div>
-			</div>
+			<div class="counter-title"><b>🎉 Open For Business 🎉</b></div>
 		</div>
-	
-		<script>
-			function updateCountdown() {
-				const targetDate = new Date("July 1, 2024 00:00:00").getTime();
-				const now = new Date().getTime();
-				const distance = targetDate - now;
-	
-				const months = Math.floor((distance % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
-				const days = Math.floor((distance % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
-				const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-				const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-	
-				document.getElementById('months').innerText = months;
-				document.getElementById('days').innerText = days;
-				document.getElementById('hours').innerText = hours;
-				document.getElementById('minutes').innerText = minutes;
-			}
-	
-			setInterval(updateCountdown, 1000);
-			updateCountdown();
-		</script>
 		<!--Timer-->
 
 		<!-- Advertisement Box -->

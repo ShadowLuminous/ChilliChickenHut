@@ -120,6 +120,88 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             outline: none;
             box-shadow: 0 0 0 3px rgba(238, 39, 55, 0.5);
         }
+
+        .responsive-image {
+            width: 100%;
+            height: auto;
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 1280px;
+            height: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: fadeIn 0.5s ease-out;
+			z-index: 1000;
+        }
+        .popup img {
+            width: 100%;
+            height: auto;
+            max-width: 640px;
+        }
+        .popup .close-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #EE2737;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: bounceIn 0.5s;
+        }
+        .popup .close-btn:hover {
+            background: #ff0015;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        @keyframes bounceIn {
+            0%, 20%, 40%, 60%, 80%, 100% {
+                animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            }
+            0% {
+                opacity: 0;
+                transform: scale3d(.3, .3, .3);
+            }
+            20% {
+                transform: scale3d(1.1, 1.1, 1.1);
+            }
+            40% {
+                transform: scale3d(.9, .9, .9);
+            }
+            60% {
+                opacity: 1;
+                transform: scale3d(1.03, 1.03, 1.03);
+            }
+            80% {
+                transform: scale3d(.97, .97, .97);
+            }
+            100% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1);
+            }
+        }
     </style>
 </head>
 <body id="bg">
@@ -220,8 +302,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		
 		<!--Timer--><br>
 		<div class="counter-container">
-			<div class="counter-title"><b>🎉 Open For Business 🎉</b></div>
-		</div>
+			<div class="counter-title"><b><u>Halal Certified</u></b></div>
+        <img src="halallogo.png" alt="Halal Certified Image" class="responsive-image">
+        <button onclick="showPopup()" class="btn btn-white btn-hover-3"><span class="btn-text" data-text="View Certificate">View Certificate</span></button>
+    </div>
+    <div class="popup" id="popup">
+        <img src="halal.jpg" alt="Large Image">
+        <button class="close-btn" onclick="hidePopup()">Close</button>
+    </div>
+
+    <script>
+        function showPopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'flex';
+            popup.style.animation = 'fadeIn 0.5s ease-out';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hidePopup() {
+            const popup = document.getElementById('popup');
+            popup.style.animation = 'fadeOut 0.5s ease-out';
+            setTimeout(() => {
+                popup.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 500);
+        }
+    </script>
 		<!--Timer-->
 
 		<!-- Advertisement Box -->

@@ -205,85 +205,197 @@
             padding: 0;
         }
 
-		.popupmain {
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            height: 100vh;
+            overflow-y: auto; /* Enable scrolling */
+        }
+
+        /* Common overlay style */
+        .overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.7);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 1000;
-        }
-
-        .popupmain-content {
-            position: relative;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 600px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for better visibility */
-        }
-		
-        .closemain {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        .reel-container {
-            border-radius: 10px;
             overflow: hidden;
         }
 
-        .instagram-reel {
-            width: 100%;
-            height: 400px;
+        /* Pop-up box */
+        .popup-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 450px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
+        /* Heading and text styling */
+        .popup-content h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .popup-content p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* Button styling */
+        .popup-content button {
+            padding: 12px 25px;
+            margin: 10px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .btn-yes {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-yes:hover {
+            background-color: #218838;
+        }
+
+        .btn-no {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-no:hover {
+            background-color: #c82333;
+        }
+
+        /* Video container */
+        .video-popup {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .video-container {
+            position: relative;
+            width: 90%;
+            max-width: 600px;
+            aspect-ratio: 16 / 9;
+            background-color: #000;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+        }
+
+        /* Close button under the video */
+        .close-btn {
+            margin-top: 15px;
+            padding: 12px 25px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background-color: #e03d3d;
+        }
+
+        /* Media Queries for smaller screens */
         @media (max-width: 768px) {
-            .instagram-reel {
-                height: 300px;
+            .video-container {
+                max-width: 450px;
+            }
+
+            .popup-content {
+                max-width: 360px;
             }
         }
 
         @media (max-width: 480px) {
-            .instagram-reel {
-                height: 250px;
+            .video-container {
+                max-width: 320px;
+            }
+
+            .popup-content {
+                max-width: 300px;
             }
         }
+		
     </style>
 </head>
 <body id="bg">
 
-	<div id="popupmain" class="popupmain">
-        <div class="popupmain-content">
-            <span class="closemain" onclick="closePopup()">&times;</span>
-            <div class="reel-container">
-                <iframe class="instagram-reel" 
-                    src="https://www.instagram.com/reel/C_TRWfEtw_r/?utm_source=ig_web_copy_link" 
-                    frameborder="0" 
-                    allowfullscreen></iframe>
-            </div>
+    <!-- Initial Pop-up Asking the Question -->
+    <div id="questionPopup" class="overlay">
+        <div class="popup-content">
+            <h2>Don't Miss Out!</h2>
+            <p>Would you like to see our limited time offer?</p>
+            <button class="btn-yes" onclick="showVideo()">Yes, show me</button>
+            <button class="btn-no" onclick="closePopup()">No, thanks</button>
         </div>
     </div>
 
-    <script>
-        window.onload = function () {
-            // Show the pop-up when the page loads
-            document.getElementById("popupmain").style.display = "block";
-        };
+    <!-- Video Pop-up -->
+    <div id="videoPopup" class="overlay video-popup">
+        <div class="video-container">
+            <iframe id="videoFrame" class="instagram-reel" 
+                src="Promo.mp4" 
+                frameborder="0" 
+                allowfullscreen></iframe>
+        </div>
+        <button class="close-btn" onclick="closePopup()">Close</button>
+    </div>
 
-        function closePopup() {
-            // Close the pop-up
-            document.getElementById("popupmain").style.display = "none";
+    <script>
+        // Function to show video pop-up and autoplay
+        function showVideo() {
+            const videoFrame = document.getElementById("videoFrame");
+            // Set src with autoplay parameter
+            videoFrame.src = "Promo.mp4?autoplay=1";
+            document.getElementById("questionPopup").style.display = "none";
+            document.getElementById("videoPopup").style.display = "flex";
+            document.body.style.overflowY = "hidden"; // Disable scrolling while video is open
         }
+
+        // Function to close all pop-ups and stop video
+        function closePopup() {
+            const videoFrame = document.getElementById("videoFrame");
+            // Stop video by resetting src
+            videoFrame.src = "";
+            document.getElementById("questionPopup").style.display = "none";
+            document.getElementById("videoPopup").style.display = "none";
+            document.body.style.overflowY = "auto"; // Enable scrolling again
+        }
+
+        // Show initial question pop-up when page loads
+        window.onload = function () {
+            document.getElementById("questionPopup").style.display = "flex";
+            document.body.style.overflowY = "hidden"; // Disable scrolling when the question is open
+        };
     </script>
 
 <!-- Google Tag Manager (noscript) -->

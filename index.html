@@ -200,19 +200,19 @@
         }
 
 		* {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f0f0f0;
             height: 100vh;
-            overflow-y: auto; /* Enable scrolling */
+            overflow: hidden;
         }
 
-        /* Common overlay style */
+        /* Overlay for the pop-up */
         .overlay {
             position: fixed;
             top: 0;
@@ -224,124 +224,133 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            overflow: hidden;
+            animation: fadeIn 0.5s ease-in-out;
         }
 
-        /* Pop-up box */
+        /* Pop-up container */
         .popup-content {
             background-color: #fff;
-            padding: 30px;
+            padding: 20px;
             border-radius: 15px;
             text-align: center;
-            max-width: 450px;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, opacity 0.3s ease;
+            width: 90%;
+            max-width: 500px;
+            animation: popIn 0.5s ease-in-out;
+            transition: transform 0.5s ease, opacity 0.5s ease;
         }
 
-        /* Heading and text styling */
-        .popup-content h2 {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 20px;
-            font-weight: bold;
+        /* Image inside the pop-up */
+        .popup-content img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 10px;
         }
 
-        .popup-content p {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 30px;
+        /* Button container (stacked layout) */
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
         }
 
-        /* Button styling */
+        /* Button styles */
         .popup-content button {
             padding: 12px 25px;
-            margin: 10px;
+            margin: 10px 0;
             border: none;
             border-radius: 25px;
             cursor: pointer;
             font-size: 16px;
-            transition: background-color 0.3s ease;
             width: 100%;
-            max-width: 200px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
-        .btn-yes {
-            background-color: #28a745;
+        /* WhatsApp button styling */
+        .btn-whatsapp {
+            background-color: #25D366;
             color: white;
         }
 
-        .btn-yes:hover {
-            background-color: #218838;
+        .btn-whatsapp:hover {
+            transform: scale(1.05);
+            background-color: #1EBB60;
         }
 
-        .btn-no {
-            background-color: #dc3545;
+        /* WhatsApp button styling */
+        .btn-whatsappp {
+            background-color: #FF0000;
             color: white;
         }
 
-        .btn-no:hover {
-            background-color: #c82333;
+        .btn-whatsappp:hover {
+            transform: scale(1.05);
+            background-color: #FF0000;
         }
 
-        /* Video container */
-        .video-popup {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .video-container {
-            position: relative;
-            width: 90%;
-            max-width: 600px;
-            aspect-ratio: 16 / 9;
-            background-color: #000;
-            border-radius: 15px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-
-        .video-container iframe {
-            width: 100%;
-            height: 100%;
-            border-radius: 15px;
-        }
-
-        /* Close button under the video */
-        .close-btn {
-            margin-top: 15px;
-            padding: 12px 25px;
-            background-color: #ff4d4d;
+        /* Close button styling */
+        .btn-close {
+            background-color: #FF0000; /* Red color for close */
             color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
         }
 
-        .close-btn:hover {
-            background-color: #e03d3d;
+        .btn-close:hover {
+            transform: scale(1.05);
+            background-color: #CC0000; /* Darker red on hover */
+        }
+
+        /* Keyframes for animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        @keyframes popOut {
+            from {
+                transform: scale(1);
+                opacity: 1;
+            }
+            to {
+                transform: scale(0.5);
+                opacity: 0;
+            }
         }
 
         /* Media Queries for smaller screens */
         @media (max-width: 768px) {
-            .video-container {
-                max-width: 450px;
-            }
-
             .popup-content {
-                max-width: 360px;
+                max-width: 400px;
             }
         }
 
         @media (max-width: 480px) {
-            .video-container {
-                max-width: 320px;
-            }
-
             .popup-content {
-                max-width: 300px;
+                max-width: 320px;
             }
         }
 		
@@ -349,53 +358,38 @@
 </head>
 <body id="bg">
 
-    <!-- Initial Pop-up Asking the Question -->
-    <div id="questionPopup" class="overlay">
-        <div class="popup-content">
-            <h2>Don't Miss Out!</h2>
-            <p>Would you like to see our limited time offer?</p>
-            <button class="btn-yes" onclick="showVideo()">Yes, show me</button>
-            <button class="btn-no" onclick="closePopup()">No, thanks</button>
+    <!-- Pop-up Overlay -->
+    <div id="popup" class="overlay">
+        <div id="popupContent" class="popup-content">
+            <img src="Promo.png" alt="Promo Image">
+            <div class="button-container">
+                <button class="btn-whatsapp" onclick="orderOnWhatsApp()">Order on WhatsApp</button>
+                <button class="btn-whatsappp" onclick="closePopup()">Continue to Menu</button>
+            </div>
         </div>
-    </div>
-
-    <!-- Video Pop-up -->
-    <div id="videoPopup" class="overlay video-popup">
-        <div class="video-container">
-            <iframe id="videoFrame" class="instagram-reel" 
-                src="Promo.mp4" 
-                frameborder="0" 
-                allowfullscreen></iframe>
-        </div>
-        <button class="close-btn" onclick="closePopup()">Close</button>
     </div>
 
     <script>
-        // Function to show video pop-up and autoplay
-        function showVideo() {
-            const videoFrame = document.getElementById("videoFrame");
-            // Set src with autoplay parameter
-            videoFrame.src = "Promo.mp4?autoplay=1";
-            document.getElementById("questionPopup").style.display = "none";
-            document.getElementById("videoPopup").style.display = "flex";
-            document.body.style.overflowY = "hidden"; // Disable scrolling while video is open
-        }
-
-        // Function to close all pop-ups and stop video
+        // Function to close the pop-up with animation
         function closePopup() {
-            const videoFrame = document.getElementById("videoFrame");
-            // Stop video by resetting src
-            videoFrame.src = "";
-            document.getElementById("questionPopup").style.display = "none";
-            document.getElementById("videoPopup").style.display = "none";
-            document.body.style.overflowY = "auto"; // Enable scrolling again
+            const popupContent = document.getElementById('popupContent');
+            popupContent.style.animation = 'popOut 0.5s ease-in-out, fadeOut 0.5s ease-in-out';
+            setTimeout(() => {
+                document.getElementById('popup').style.display = 'none';
+                document.body.style.overflowY = 'auto'; // Allow scrolling after closing the pop-up
+            }, 500); // Delay for the duration of the closing animation
         }
 
-        // Show initial question pop-up when page loads
+        // Function to open WhatsApp
+        function orderOnWhatsApp() {
+            window.location.href = 'https://wa.me/27682699305';
+        }
+
+        // Display the pop-up when the page loads
         window.onload = function () {
-            document.getElementById("questionPopup").style.display = "flex";
-            document.body.style.overflowY = "hidden"; // Disable scrolling when the question is open
-        };
+            document.body.style.overflowY = 'hidden'; // Disable scrolling while pop-up is open
+            document.getElementById('popup').style.display = 'flex';
+        }
     </script>
 
 <!-- Google Tag Manager (noscript) -->
@@ -530,8 +524,8 @@
 					<div class="col-lg-4 col-md-12 m-b30 wow fadeInUp" data-wow-delay="0.2s">
 						<div class="adv-box style-1" style="background-image:url('assets/images/adv/pic2.png'); background-repeat:no-repeat; background-position:center; background-size:cover;">
 							<div class="adv-content">
-								<span class="special">🏆 CURRIE CUP COMBO 🏉</span>
-								<h4 style="color: white;">Masala Chicken Curry<br>with Pap & Pepsi</h4>
+								<h2 style="color: white;"><b><u>CURRIE CUP COMBO</u></b></h2>
+								<h6 style="color: white;">Masala Chicken Curry<br><i>with</i> Pap & Pepsi</h6>
 							</div>
 							<div class="adv-media">
 								<img class="main-media" src="assets/images/adv/pic1.png" alt="/">

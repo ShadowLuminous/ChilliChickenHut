@@ -223,7 +223,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 9999; /* Make sure this is above all other elements */
             animation: fadeIn 0.5s ease-in-out;
         }
 
@@ -243,7 +243,6 @@
         /* Image inside the pop-up */
         .popup-content img {
             width: 100%;
-            max-width: 500px;
             height: auto;
             border-radius: 10px;
         }
@@ -278,15 +277,14 @@
             background-color: #1EBB60;
         }
 
-        /* WhatsApp button styling */
-        .btn-whatsappp {
+		.btn-whatsappp {
             background-color: #FF0000;
             color: white;
         }
 
         .btn-whatsappp:hover {
             transform: scale(1.05);
-            background-color: #FF0000;
+            background-color: #CC0000;
         }
 
         /* Close button styling */
@@ -341,7 +339,7 @@
             }
         }
 
-        /* Media Queries for smaller screens */
+        /* Media Queries for smaller screens (Mobile) */
         @media (max-width: 768px) {
             .popup-content {
                 max-width: 400px;
@@ -351,6 +349,13 @@
         @media (max-width: 480px) {
             .popup-content {
                 max-width: 320px;
+            }
+        }
+
+        /* Adjust for Desktop */
+        @media (min-width: 1024px) {
+            .popup-content {
+                max-width: 270px; /* Reduce the size for desktop */
             }
         }
 		

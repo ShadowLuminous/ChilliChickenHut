@@ -223,7 +223,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 9999; /* Make sure this is above all other elements */
+            z-index: 99999999999; /* Make sure this is above all other elements */
             animation: fadeIn 0.5s ease-in-out;
         }
 
@@ -365,6 +365,13 @@
             font-family: 'Montserrat', sans-serif;
             color: white;
             font-weight: bold;
+            display: inline-block;
+            animation: bounce 1s infinite;
+        }
+
+		.animated-image {
+            width: 180px;
+            height: auto;
             display: inline-block;
             animation: bounce 1s infinite;
         }
@@ -548,7 +555,8 @@
 					<div class="col-lg-4 col-md-12 m-b30 wow fadeInUp" data-wow-delay="0.2s">
 						<div class="adv-box style-1" style="background-image:url('assets/images/adv/pic2.png'); background-repeat:no-repeat; background-position:center; background-size:cover;">
 							<div class="adv-content">
-								<h3 style="color: white;">CURRIE CUP COMBO🏉</h3>
+								<!-- <h3 style="color: white;">CURRIE CUP COMBO🏉</h3> -->
+								<img class="animated-image" src="Combo-Text.png" alt="Rugby Ball">
 								<h6 style="color: white;">Masala Chicken Curry<br><i>with</i> Pap & Pepsi</h6>
 							</div>
 							<div class="adv-media">

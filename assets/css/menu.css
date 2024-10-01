@@ -1,0 +1,148 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f8f8;
+}
+
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.menu-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.menu-block {
+    width: 30%; /* Default width for desktop */
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-block.special {
+    background-color: red;
+    color: white;
+    animation: pulse 2s infinite;
+}
+
+.menu-block:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 15px red; }
+    50% { box-shadow: 0 0 25px yellow; }
+    100% { box-shadow: 0 0 15px red; }
+}
+
+.menu-featured-image {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.carousel img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.menu-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+.menu-title:hover {
+    color: red;
+}
+
+.sale-menu-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+    animation: jump 2s infinite ease-in-out; /* Add jumping animation */
+}
+
+.sale-menu-title:hover {
+    color: black;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    transition: background-color 0.3s ease;
+}
+
+.menu-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.item-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-title {
+    font-weight: bold;
+}
+
+.item-description {
+    font-size: 14px;
+    color: #555;
+}
+
+.menu-item-description {
+    color: white; /* Change from grey to white */
+    font-size: 14px;
+    text-align: left;
+}
+
+.item-price {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.menu-item-divider {
+    height: 1px;
+    background-color: #ddd;
+    margin: 10px 0;
+}
+
+/* Keyframe for jumping motion */
+@keyframes jump {
+    0%, 100% {
+        transform: translateY(0); /* Starting and ending position */
+    }
+    50% {
+        transform: translateY(-10px); /* Move up by 10px at the peak of the jump */
+    }
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .menu-block {
+        width: 90%; /* Adjust width to make it look centered on mobile */
+        margin: 10px auto; /* Center align blocks and add some vertical margin */
+    }
+
+    .menu-row {
+        flex-direction: column; /* Stack the rows vertically */
+        align-items: center; /* Center align the blocks */
+        width: 100%; /* Ensure the row takes full width */
+    }
+}

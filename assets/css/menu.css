@@ -77,10 +77,10 @@ body {
     background: linear-gradient(45deg, rgba(0, 0, 0, 0.8), rgb(255, 0, 0));
     background: linear-gradient(45deg, rgb(0, 175, 0), orangered);
     background: rgb(0, 175, 0);
-    background: yellowgreen;
+/*     background: yellowgreen;
     background: yellow;
     background: orangered;
-    background: #f3a24b;
+    background: #f3a24b; */
     z-index: -1; /* Ensure the background stays behind the text */
     transform: skewX(-15deg); /* Adds the slanted effect */
     border-radius: 10px; /* Slight rounding for a smoother look */

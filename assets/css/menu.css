@@ -27,8 +27,14 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.menu-block.special {
-    background-color: red;
+.menu-block.speciala {
+    background-color: rgb(255, 196, 0);
+    color: white;
+    animation: pulse 2s infinite;
+}
+
+.menu-block.specialb {
+    background-color: orangered;
     color: white;
     animation: pulse 2s infinite;
 }

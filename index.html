@@ -523,28 +523,12 @@
 		<div class="counter-container">
 			<div class="counter-title"><b><u>Halal Certified</u></b></div>
         <img src="halallogo.png" alt="Halal Certified Image" class="responsive-image"><br>
-        <button onclick="showPopup()" class="btn btn-white btn-hover-3"><span class="btn-text" data-text="View Certificate">View Certificate</span></button>
-    </div>
-    <div class="popup" id="popup">
-        <img src="halal.jpg" alt="Large Image">
-        <button class="close-btn" onclick="hidePopup()">Close</button>
+        <button onclick="cert()" class="btn btn-white btn-hover-3"><span class="btn-text" data-text="View Certificate">View Certificate</span></button>
     </div>
 
     <script>
-        function showPopup() {
-            const popup = document.getElementById('popup');
-            popup.style.display = 'flex';
-            popup.style.animation = 'fadeIn 0.5s ease-out';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function hidePopup() {
-            const popup = document.getElementById('popup');
-            popup.style.animation = 'fadeOut 0.5s ease-out';
-            setTimeout(() => {
-                popup.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }, 500);
+        function cert() {
+            window.location.href = "halal.html";
         }
     </script>
 		<!--Timer-->
@@ -556,7 +540,7 @@
 					<div class="col-lg-4 col-md-12 m-b30 wow fadeInUp" data-wow-delay="0.2s">
 						<div class="adv-box style-1" style="background-image:url('assets/images/adv/pic2.png'); background-repeat:no-repeat; background-position:center; background-size:cover;">
 							<div class="adv-content">
-								<h1 class="animated-image" style="color: white;">HOT DEALS</h1>
+								<h2 class="animated-image" style="color: white;">🔥HOT DEALS🔥</h2>
 								<!-- <img class="animated-image" src="Combo-Text.png" alt="Rugby Ball"> -->
 								<!-- <h6 style="color: white;">Masala Chicken Curry<br><i>with</i> Pap & Pepsi</h6> -->
 							</div>
@@ -579,7 +563,7 @@
 									<div class="adv-content">
 										<span class="special text-white">FIND US ON</span>
 										<h4 class="title text-white">MRD</h4>
-										<a target="_blank" href="https://order.mrdfood.com/order/restaurant/29351/menu/2425781" class="btn btn-white btn-hover-3"><span class="btn-text" data-text="Order Now"><b>Order Now</b></span></a>
+										<!-- <a target="_blank" href="https://order.mrdfood.com/order/restaurant/29351/menu/2425781" class="btn btn-white btn-hover-3"><span class="btn-text" data-text="Order Now"><b>Order Now</b></span></a> -->
 									</div>
 								</div>
 							</div>
@@ -591,7 +575,7 @@
 									<div class="adv-content">
 										<span class="special text-white">FIND US ON UBER</span>
 										<h4 class="title text-white">EATS</h4>
-										<a target="_blank" href="https://www.order.store/store/chilli-chicken-hut/HHCcC97gXJ28lVL9WMkZMQ" class="btn btn-white btn-hover-3"><span class="btn-text" data-text="Order Now"><b>Order Now</b></span></a>
+										<!-- <a target="_blank" href="https://www.order.store/store/chilli-chicken-hut/HHCcC97gXJ28lVL9WMkZMQ" class="btn btn-white btn-hover-3"><span class="btn-text" data-text="Order Now"><b>Order Now</b></span></a> -->
 									</div>
 								</div>
 							</div>
@@ -1227,7 +1211,7 @@
 				<div class="row align-items-center">
 					<div class="col m-b30">
 						<div class="contact-head">
-							<center><h4 class="title text-white wow fadeInUp" data-wow-delay="0.2s">Stay in the Loop!</h4></center>
+							<center><h4 class="title text-white wow fadeInUp" data-wow-delay="0.2s">Join the WhatsApp Group and Stay in the Loop!</h4></center>
 						<center><p class="text-white opacity-75 wow fadeInUp" data-wow-delay="0.4s">Be the first to know about our mouthwatering specials, tantalizing promotions, and irresistible discounts.<br>Plus, for a limited time, get an exclusive <b><u>10% discount</u></b> on your first WhatsApp order!<br>Hurry, offer valid for the first 10 orders each month.</p></center>
 						</div>
 						<form action="https://formspree.io/f/xayrvbvr" method="POST">
